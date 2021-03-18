@@ -54,6 +54,12 @@ namespace ProyectoSIENA.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult BuscarTodos(string documento)
+        {
+            MantenimientoUsuario ma = new MantenimientoUsuario();
+            return View(ma.RecuperarTodos());
+        }
+
         // GET: Home/Edit/5
         public ActionResult Edit(int id)
         {
