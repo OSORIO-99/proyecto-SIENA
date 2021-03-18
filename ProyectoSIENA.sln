@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoSIENA", "ProyectoSIENA\ProyectoSIENA.csproj", "{75E5392A-85B4-43F5-B183-5555BD4C0219}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75E5392A-85B4-43F5-B183-5555BD4C0219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75E5392A-85B4-43F5-B183-5555BD4C0219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75E5392A-85B4-43F5-B183-5555BD4C0219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75E5392A-85B4-43F5-B183-5555BD4C0219}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B24879A1-6134-48C5-81E5-9181D1E07928}
+	EndGlobalSection
+EndGlobal
