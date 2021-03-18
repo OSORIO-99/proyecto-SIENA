@@ -20,8 +20,8 @@ namespace ProyectoSIENA.Models
         public int Insertar(Usuario usu)
         {
             Conectar();
-            SqlCommand comando = new SqlCommand("insert into usuarios(id,documento,tipodoc,nombre,celular,email,genero,aprendiz,egresado,areaformacion,fechaegresado,direccion,barrio,ciudad,departamento,fecharegistro) values (@id,@documento,@tipodoc,@nombre,@celular,@email,@genero,@aprendiz,@egresado,@areaformacion,@fechaegresado,@direccion,@barrio,@ciudad,@departamento,@fecharegistro)", con);
-            comando.Parameters.Add("@id", SqlDbType.Int);
+            SqlCommand comando = new SqlCommand("insert into usuarios(documento,tipodoc,nombre,celular,email,genero,aprendiz,egresado,areaformacion,fechaegresado,direccion,barrio,ciudad,departamento,fecharegistro) values (@documento,@tipodoc,@nombre,@celular,@email,@genero,@aprendiz,@egresado,@areaformacion,@fechaegresado,@direccion,@barrio,@ciudad,@departamento,@fecharegistro)", con);
+            //comando.Parameters.Add("@id", SqlDbType.Int);
             comando.Parameters.Add("@documento", SqlDbType.VarChar);
             comando.Parameters.Add("@tipodoc", SqlDbType.VarChar);
             comando.Parameters.Add("@nombre", SqlDbType.VarChar);
@@ -38,7 +38,7 @@ namespace ProyectoSIENA.Models
             comando.Parameters.Add("@departamento", SqlDbType.VarChar);
             comando.Parameters.Add("@fecharegistro", SqlDbType.VarChar);
 
-            comando.Parameters["@id"].Value = usu.Id;
+            //comando.Parameters["@id"].Value = usu.Id;
             comando.Parameters["@documento"].Value = usu.Documento;
             comando.Parameters["@tipodoc"].Value = usu.Tipodoc;
             comando.Parameters["@nombre"].Value = usu.Nombre;

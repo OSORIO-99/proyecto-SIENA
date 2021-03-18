@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoSIENA.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,16 +31,27 @@ namespace ProyectoSIENA.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
+            MantenimientoUsuario ma = new MantenimientoUsuario();
+            Usuario usu = new Usuario
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                Documento = collection["documento"].ToString(),
+                Tipodoc = collection["tipodoc"].ToString(),
+                Nombre = collection["nombre"].ToString(),
+                Celular = collection["celular"].ToString(),
+                Email = collection["email"].ToString(),
+                Genero = collection["genero"].ToString(),
+                Aprendiz = collection["aprendiz"].ToString(),
+                Egresado = collection["egresado"].ToString(),
+                AreaFormacion = collection["areaformacion"].ToString(),
+                FechaEgresado = collection["fechaegresado"].ToString(),
+                Direccion = collection["direccion"].ToString(),
+                Barrio = collection["barrio"].ToString(),
+                Ciudad = collection["ciudad"].ToString(),
+                Departamento = collection["departamento"].ToString(),
+                FechaRegistro = collection["fecharegistro"].ToString()
+            };
+            ma.Insertar(usu);
+            return RedirectToAction("Index");
         }
 
         // GET: Home/Edit/5
