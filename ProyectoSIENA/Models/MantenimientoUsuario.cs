@@ -22,7 +22,7 @@ namespace ProyectoSIENA.Models
             Conectar();
             SqlCommand comando = new SqlCommand("insert into usuarios(documento,tipodoc,nombre,celular,email,genero,aprendiz,egresado,areaformacion,fechaegresado,direccion,barrio,ciudad,departamento,fecharegistro) values (@documento,@tipodoc,@nombre,@celular,@email,@genero,@aprendiz,@egresado,@areaformacion,@fechaegresado,@direccion,@barrio,@ciudad,@departamento,@fecharegistro)", con);
             //comando.Parameters.Add("@id", SqlDbType.Int);
-            comando.Parameters.Add("@documento", SqlDbType.VarChar);
+            comando.Parameters.Add("@documento", SqlDbType.BigInt);
             comando.Parameters.Add("@tipodoc", SqlDbType.VarChar);
             comando.Parameters.Add("@nombre", SqlDbType.VarChar);
             comando.Parameters.Add("@celular", SqlDbType.VarChar);
@@ -75,7 +75,7 @@ namespace ProyectoSIENA.Models
                 Usuario usu = new Usuario
                 {
                     Id = int.Parse(registros["id"].ToString()),
-                    Documento = registros["documento"].ToString(),
+                    Documento = int.Parse(registros["documento"].ToString()),
                     Tipodoc = registros["tipodoc"].ToString(),
                     Nombre = registros["nombre"].ToString(),
                     Celular = registros["celular"].ToString(),
@@ -99,7 +99,7 @@ namespace ProyectoSIENA.Models
         public Usuario RecuperarAreaFormacion(string areaformacion)
         {
             Conectar();
-            SqlCommand comando = new SqlCommand("select id, documento, tipodoc, nombre, celular, email, genero, aprendiz, egresado, areaformacion, fechaegresado, direccion, barrio, ciudad, departamento, fecharegistro from usuarios where areaformacion = @areaformacion", con);
+            SqlCommand comando = new SqlCommand("select documento, tipodoc, nombre, celular, email, genero, aprendiz, egresado, areaformacion, fechaegresado, direccion, barrio, ciudad, departamento, fecharegistro from usuarios where areaformacion = @areaformacion", con);
             comando.Parameters.Add("@areaformacion", SqlDbType.VarChar);
             comando.Parameters["@areaformacion"].Value = areaformacion;
             con.Open();
@@ -107,10 +107,9 @@ namespace ProyectoSIENA.Models
             SqlDataReader registros = comando.ExecuteReader();
             Usuario usuario = new Usuario();
 
-            if(registros.Read())
+            if (registros.Read())
             {
-                usuario.Id = int.Parse(registros["id"].ToString());
-                usuario.Documento = registros["documento"].ToString();
+                usuario.Documento = int.Parse(registros["documento"].ToString());
                 usuario.Tipodoc = registros["tipodoc"].ToString();
                 usuario.Nombre = registros["nombre"].ToString();
                 usuario.Celular = registros["celular"].ToString();
@@ -126,6 +125,9 @@ namespace ProyectoSIENA.Models
                 usuario.Departamento = registros["departamento"].ToString();
                 usuario.FechaRegistro = registros["fecharegistro"].ToString();
             }
+            else
+                usuario = null;
+
             con.Close();
             return usuario;
         }
@@ -143,7 +145,7 @@ namespace ProyectoSIENA.Models
             if (registros.Read())
             {
                 usuario.Id = int.Parse(registros["id"].ToString());
-                usuario.Documento = registros["documento"].ToString();
+                usuario.Documento = int.Parse(registros["documento"].ToString());
                 usuario.Tipodoc = registros["tipodoc"].ToString();
                 usuario.Nombre = registros["nombre"].ToString();
                 usuario.Celular = registros["celular"].ToString();
@@ -162,11 +164,11 @@ namespace ProyectoSIENA.Models
             con.Close();
             return usuario;
         }
-        public Usuario RecuperarPorDocumento(string documento)
+        public Usuario RecuperarPorDocumento(long documento)
         {
             Conectar();
             SqlCommand comando = new SqlCommand("select id, documento, tipodoc, nombre, celular, email, genero, aprendiz, egresado, areaformacion, fechaegresado, direccion, barrio, ciudad, departamento, fecharegistro from usuarios where documento = @documento", con);
-            comando.Parameters.Add("@documento", SqlDbType.VarChar);
+            comando.Parameters.Add("@documento", SqlDbType.BigInt);
             comando.Parameters["@documento"].Value = documento;
             con.Open();
 
@@ -176,7 +178,41 @@ namespace ProyectoSIENA.Models
             if (registros.Read())
             {
                 usuario.Id = int.Parse(registros["id"].ToString());
-                usuario.Documento = registros["documento"].ToString();
+                usuario.Documento = long.Parse(registros["documento"].ToString());
+                usuario.Tipodoc = registros["tipodoc"].ToString();
+                usuario.Nombre = registros["nombre"].ToString();
+                usuario.Celular = registros["celular"].ToString();
+                usuario.Email = registros["email"].ToString();
+                usuario.Genero = registros["genero"].ToString();
+                usuario.Aprendiz = registros["aprendiz"].ToString();
+                usuario.Egresado = registros["egresado"].ToString();
+                usuario.AreaFormacion = registros["areaformacion"].ToString();
+                usuario.FechaEgresado = registros["fechaegresado"].ToString();
+                usuario.Direccion = registros["direccion"].ToString();
+                usuario.Barrio = registros["barrio"].ToString();
+                usuario.Ciudad = registros["ciudad"].ToString();
+                usuario.Departamento = registros["departamento"].ToString();
+                usuario.FechaRegistro = registros["fecharegistro"].ToString();
+            }
+            con.Close();
+            return usuario;
+        }
+
+        public Usuario Recuperar(int id)
+        {
+            Conectar();
+            SqlCommand comando = new SqlCommand("select id, documento, tipodoc, nombre, celular, email, genero, aprendiz, egresado, areaformacion, fechaegresado, direccion, barrio, ciudad, departamento, fecharegistro from usuarios where id = @id", con);
+            comando.Parameters.Add("@id", SqlDbType.Int);
+            comando.Parameters["@id"].Value = id;
+            con.Open();
+
+            SqlDataReader registros = comando.ExecuteReader();
+            Usuario usuario = new Usuario();
+
+            if (registros.Read())
+            {
+                usuario.Id = int.Parse(registros["id"].ToString());
+                usuario.Documento = long.Parse(registros["documento"].ToString());
                 usuario.Tipodoc = registros["tipodoc"].ToString();
                 usuario.Nombre = registros["nombre"].ToString();
                 usuario.Celular = registros["celular"].ToString();
@@ -243,17 +279,20 @@ namespace ProyectoSIENA.Models
             comando.Parameters.Add("@fecharegistro", SqlDbType.VarChar);
             comando.Parameters["@fecharegistro"].Value = usu.FechaRegistro;
 
+            comando.Parameters.Add("@documento", SqlDbType.BigInt);
+            comando.Parameters["@documento"].Value = usu.Documento;
+
             con.Open();
             int i = comando.ExecuteNonQuery();
             con.Close();
             return i;
         }
 
-        public int Borrar(string documento)
+        public int Borrar(int documento)
         {
             Conectar();
             SqlCommand comando = new SqlCommand("delete from usuarios where documento=@documento", con);
-            comando.Parameters.Add("@documento", SqlDbType.VarChar);
+            comando.Parameters.Add("@documento", SqlDbType.Int);
             comando.Parameters["@documento"].Value = documento;
 
             con.Open();

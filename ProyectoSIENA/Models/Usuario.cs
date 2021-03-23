@@ -12,7 +12,7 @@ namespace ProyectoSIENA.Models
 
         [Required(ErrorMessage = "El Documento es obligatorio")]
         [RegularExpression("[0123456789]", ErrorMessage = "Solo puede ingresar números")]
-        public string Documento { get; set; }
+        public long Documento { get; set; }
 
 
         public string Tipodoc { get; set; }
