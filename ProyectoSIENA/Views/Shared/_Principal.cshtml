@@ -8,43 +8,33 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-        <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li>@Html.ActionLink("Acerca de este sitio", "Index")</li>
-                                    <li>@Html.ActionLink("Agregar Aprendiz", "Create")</li>
-                                    <li>@Html.ActionLink("Buscar Todos", "BuscarTodos")</li>
-                                    <li>@Html.ActionLink("Buscar por Formacion", "ListarPorFormacion")</li>
-                                    <li>@Html.ActionLink("Buscar por Documento", "BuscarPorDocumento")</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+    <div>
+
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <span class="text-muted">Seleccione la accion que desee</span><br />
+                    <button type="button" class="btn btn-outline-secondary">@Html.ActionLink("Inicio", "Index")</button>
+                    <button type="button" class="btn btn-outline-secondary">@Html.ActionLink("Agregar Aprendiz", "Create")</button>
+                    <button type="button" class="btn btn-outline-secondary">@Html.ActionLink("Mostrar Todos Los Aprendices", "BuscarTodos")</button>
                 </div>
-            </nav>
 
-            <hr />
-            @RenderBody()
-            <hr />
-
-            <h3>Copyright 2021 Jaime Andrés</h3>
+            </div>
         </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+
+        <hr />
+        @RenderBody()
+        <hr />
+
+        <h3 class="text-center">Copyright © 2021 <strong>OSORIO_99</strong></h3>
+    </div>
 </body>
 </html>

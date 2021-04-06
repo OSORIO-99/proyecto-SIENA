@@ -14,13 +14,6 @@ namespace ProyectoSIENA.Controllers
         {
             return View();
         }
-        // GET: Home/Details/5
-        public ActionResult Details(int id)
-        {
-            MantenimientoUsuario ma = new MantenimientoUsuario();
-            Usuario usu = ma.RecuperarPorDocumento(id);
-            return View(usu);
-        }
 
         // GET: Home/Create
         public ActionResult Create()

@@ -7,8 +7,14 @@
 
 <h2>Listado de aprendices</h2>
 
+<script>
+    .acli: link{
+        text-decoration: none;
+    }
+</script>
+
 <p>
-    @Html.ActionLink("Agregar", "Create")
+    <button type="button" class="btn btn-outline-success"id="acli"> @Html.ActionLink("Agregar", "Create")</button>
 </p>
 <div class="container">
     <table class="table">
@@ -111,8 +117,8 @@
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Detalles", "Details", new { id = item.Documento }) |
-                    @Html.ActionLink("Borrar", "Delete", new { id = item.Documento })
+                     |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Documento })
                 </td>
             </tr>
         }
